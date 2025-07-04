@@ -11,47 +11,57 @@ public class NumberGame {
 
         System.out.println("Hey User! You have 5 chances to guess the correct number, which is between 1 and 100.");
         System.out.println("If you guess the correct number on your first try, you'll get 100 points. For each additional attempt, 20 points will be deducted.");
-        System.out.println("Enter Your Guessing Number: ");
-        int userNumber = sc.nextInt();
+        int userNumber = 0;
         int attemptNumber = 5;
         while (attemptNumber > 0){
-            if (userNumber == numberToGuess){
-                System.out.println("Congrats! Your guessing is correct");
-                switch (attemptNumber){
-                    case 1:
-                        System.out.println("You have found it in last choice!");
-                        System.out.println("Your score is 20.");
-                        break;
-                    case 2:
-                        System.out.println("You have found it in 4th choice!");
-                        System.out.println("Your score is 40.");
-                        break;
-                    case 3:
-                        System.out.println("You have found it in 3rd choice!");
-                        System.out.println("Your score is 60.");
-                        break;
-                    case 4:
-                        System.out.println("You have found it in 2nd choice!");
-                        System.out.println("Your score is 80.");
-                        break;
-                    case 5:
-                        System.out.println("You have found it in 1st choice!");
-                        System.out.println("Your score is 100.");
-                        break;
+            System.out.println("Enter Your Guessing Number: ");
+            if (sc.hasNextInt()){
+                userNumber = sc.nextInt();
+                if (userNumber < 1 || userNumber > 100){
+                    System.out.println("Please enter a number between 1 and 100!");
+                    continue;
                 }
-                break;
-            }
-            else if (userNumber > numberToGuess) {
-                System.out.println("Your guess is high!");
+                if (userNumber == numberToGuess){
+                    System.out.println("Congrats! Your guessing is correct");
+                    switch (attemptNumber){
+                        case 1:
+                            System.out.println("You have found it in last choice!");
+                            System.out.println("Your score is 20.");
+                            break;
+                        case 2:
+                            System.out.println("You have found it in 4th choice!");
+                            System.out.println("Your score is 40.");
+                            break;
+                        case 3:
+                            System.out.println("You have found it in 3rd choice!");
+                            System.out.println("Your score is 60.");
+                            break;
+                        case 4:
+                            System.out.println("You have found it in 2nd choice!");
+                            System.out.println("Your score is 80.");
+                            break;
+                        case 5:
+                            System.out.println("You have found it in 1st choice!");
+                            System.out.println("Your score is 100.");
+                            break;
+                    }
+                    break;
+                }
+                else if (userNumber > numberToGuess) {
+                    System.out.println("Your guess is high!");
+                }
+                else {
+                    System.out.println("Your guess is low!");
+                }
             }
             else {
-                System.out.println("Your guess is low!");
+                System.out.println("Invalid input! Please enter a valid integer.");
+                sc.next();
+                continue;
             }
             attemptNumber --;
             if (attemptNumber > 0){
                 System.out.printf("You have %d chance left.\n",(attemptNumber));
-                System.out.println("Enter Your Guessing Number: ");
-                userNumber = sc.nextInt();
             }
             else {
                 System.out.println("Sorry! You have no chances left.");
