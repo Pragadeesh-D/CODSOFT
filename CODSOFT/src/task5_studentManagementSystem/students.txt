@@ -1,6 +1,0 @@
-Name            Department      RollNumber   Grade
-Pragadeesh      CSE             31           A+
-Duraimani       CSE             11           A
-Abideepan       CSE             1            D
-Mohan raj       CSE             420          D
-Gokul raj       CSE             13           C
