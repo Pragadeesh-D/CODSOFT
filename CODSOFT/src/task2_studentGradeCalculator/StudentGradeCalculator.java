@@ -8,8 +8,8 @@ public class StudentGradeCalculator {
 
     // Main logic to calculate the student's grade based on input marks
     public static void studentGradeCalculator(){
-        int subjects = 0;
-        double marks = 0, average = 0;
+        int subjects;
+        double marks = 0, average;
 
         // Ask the user how many subjects they have
         System.out.println("\nPlease enter how many subjects you have: ");
@@ -22,11 +22,11 @@ public class StudentGradeCalculator {
                     break;
                 }
                 else {
-                    System.out.println("Number of subjects must be greater than 0! Please enter the total number of subjects.");
+                    System.out.println("Number of subjects must be greater than 0! Please enter the total number of subjects:");
                 }
             }
             else {
-                System.out.println("Invalid input! Please enter a valid integer for the total number of subjects.");
+                System.out.println("Invalid input! Please enter a valid integer for the total number of subjects:");
                 sc.next(); // Skip wrong input
             }
         }
@@ -47,7 +47,7 @@ public class StudentGradeCalculator {
                 marks += mark; // Add valid mark to total
             }
             else {
-                System.out.println("nvalid input! Please enter a valid mark.");
+                System.out.println("Invalid input! Please enter a valid mark.");
                 i--; // Repeat this subject
                 sc.next(); // Skip wrong input
             }
@@ -83,7 +83,7 @@ public class StudentGradeCalculator {
         }
         else if (average >= 50 && average <= 59) {
             System.out.println("Your Grade: D");
-            System.out.println("Needs improvement. Don't give up — work harder and you'll do better next time.");
+            System.out.println("Needs improvement. Don't give up - work harder and you'll do better next time.");
         }
         else {
             System.out.println("Your Grade: F");
@@ -91,31 +91,39 @@ public class StudentGradeCalculator {
         }
 
         // Ask if user wants to calculate grade again
-        System.out.println("\nDo you want to calculate for another student? Type 'yes' or 'no':");
+        System.out.println("\nDo you want to calculate grade for another student? Type 'yes' or 'no':");
     }
 
     // Displays the grading scale based on percentage
     public static void gradeSystem(){
         System.out.println("------------- Grade System -------------");
-        System.out.println("Percentage range         Grade            \n" +
-                                      "≥ 90%                     A+             \n" +
-                                      "80 - 89%                  A              \n" +
-                                      "70 - 79%                  B              \n" +
-                                      "60 - 69%                  C              \n" +
-                                      "50 - 59%                  D              \n" +
-                                      "< 50%                     F");
+        System.out.println("""
+                Percentage range         Grade
+                ≥ 90%                     A+
+                80 - 89%                  A
+                70 - 79%                  B
+                60 - 69%                  C
+                50 - 59%                  D
+                < 50%                     F""");
     }
 
     // Entry point of the program
     public static void main(String[] args){
-        System.out.println("Hey Student! This is the Student Grade Calculator.\nYou can calculate your grade by providing all your subject marks.");
+        System.out.println("----- Student Grade Calculator -----");
+        System.out.println("\nHey Student! This is the Student Grade Calculator.\nYou can calculate your grade by providing all your subject marks.");
         studentGradeCalculator();
+        int count = 1;
         while (true) {
             String repeat = sc.next();
             if (repeat.equalsIgnoreCase("yes")) {
+                count++;
+                System.out.println();
+                if (count == 2){System.out.println("Calculating Grade for 2nd Student...");}
+                else if (count == 3) {System.out.println("Calculating Grade for 3rd Student...");}
+                else {System.out.printf("Calculating Grade for %dth Student...\n",count);}
                 studentGradeCalculator();
             } else if (repeat.equalsIgnoreCase("no")) {
-                System.out.println("\nThanks for using our service!");
+                System.out.println("\nGoodbye! Thanks for using our service.");
                 break;
             }
             else {

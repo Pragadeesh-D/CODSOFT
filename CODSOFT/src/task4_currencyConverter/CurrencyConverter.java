@@ -72,7 +72,7 @@ public class CurrencyConverter {
         Set<String> validCurrencies = new HashSet<>(Arrays.asList("INR", "USD", "EUR", "GBP", "JPY", "AUD", "CAD"));
 
         // Display available currencies
-        System.out.println("Available currencies: INR, USD, EUR, GBP, JPY, AUD, CAD");
+        System.out.println("\nAvailable currencies: INR, USD, EUR, GBP, JPY, AUD, CAD");
 
         // Get base currency from user
         System.out.println("Enter the base currency: ");
@@ -97,7 +97,7 @@ public class CurrencyConverter {
         }
 
         // Get target currency from user
-        System.out.println("Enter the target currency: ");
+        System.out.println("\nEnter the target currency: ");
         while (true) {
             targetCurrency = sc.nextLine().toUpperCase(); // Convert to uppercase
 
@@ -119,7 +119,7 @@ public class CurrencyConverter {
         }
 
         // Prompt user to enter amount to convert
-        System.out.println("Enter the amount to convert: ");
+        System.out.println("\nEnter the amount to convert: ");
         while (true){
             if (sc.hasNextDouble()){
                 amount = sc.nextDouble();
@@ -142,14 +142,14 @@ public class CurrencyConverter {
 
         // Handle conversion if both currencies are the same
         if (baseCurrency.equals(targetCurrency)){
-            System.out.printf("%.2f %s = %.2f %s",amount,baseCurrency,amount,targetCurrency);
+            System.out.printf("\n%.2f %s = %.2f %s\n",amount,baseCurrency,amount,targetCurrency);
         }
         else {
             // Call API and get exchange rate
             double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
             if (exchangeRate != -1){
                 double convertedRate = amount * exchangeRate;
-                System.out.printf("%.2f %s = %.2f %s\n",amount,baseCurrency,convertedRate,targetCurrency);
+                System.out.printf("\n%.2f %s = %.2f %s\n",amount,baseCurrency,convertedRate,targetCurrency);
             }
         }
 
@@ -159,11 +159,13 @@ public class CurrencyConverter {
 
     // Main method: program execution starts here
     public static void main(String[] args) {
+        System.out.println("----- Currency Converter -----");
+
         // Create an instance of CurrencyConverter
         CurrencyConverter converter = new CurrencyConverter();
 
         // Greet the user
-        System.out.println("Hello user! Welcome to the Currency Converter.\nYou can convert from one currency to another using real-time exchange rates.\n");
+        System.out.println("\nHello user! Welcome to the Currency Converter.\nYou can convert from one currency to another using real-time exchange rates.");
 
         // Start the first conversion
         converter.currencyConverter();
@@ -172,6 +174,7 @@ public class CurrencyConverter {
         while (true){
             String choice = sc.nextLine();
             if (choice.equalsIgnoreCase("yes")){
+                System.out.println("\nConverting currency again...");
                 converter.currencyConverter(); // Call again
             } else if (choice.equalsIgnoreCase("no")) {
                 System.out.println("Thanks for using our currency converter. Goodbye!");

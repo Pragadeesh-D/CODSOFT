@@ -6,7 +6,7 @@ import java.io.*;
 // Class representing a single student's details
 class Student{
     private String studentName;
-    private int rollNo;
+    private final int rollNo;
     private String grade;
     private String dept;
 
@@ -249,6 +249,7 @@ public class StudentManagementSystem {
         while (true){
             boolean exists = false;
 
+            System.out.println("\n--- Adding Student ---");
             // Get student details one by one
             System.out.println("\nEnter the student's name: ");
             name = getStudentName();
@@ -288,6 +289,7 @@ public class StudentManagementSystem {
 
     // This method allows the user to remove a student using roll number and department
     public void removeStudent(){
+        System.out.println("\n--- Removing Student ---");
         System.out.println("\nTo remove a student, you need to enter their roll number and department.");
         Student toRemove = null;
 
@@ -321,6 +323,7 @@ public class StudentManagementSystem {
 
     // This method allows the user to search for a student by roll number and department
     public void searchStudent(){
+        System.out.println("\n--- Searching Student ---");
         System.out.println("\nTo search for a student, you need to enter their roll number and department.");
         Student toSearch = null;
 
@@ -353,6 +356,7 @@ public class StudentManagementSystem {
     // This method helps update student details by selecting specific fields or all
     public void updateStudent(){
         boolean found = false;
+        System.out.println("\n--- Updating Student ---");
         System.out.println("\nTo update a student's details, you need to enter their roll number and department.");
         System.out.println("Enter the student's roll number: ");
         rollNo = getStudentRollNumber();
@@ -366,7 +370,7 @@ public class StudentManagementSystem {
                 found = true;
 
                 // Ask user what fields to update
-                System.out.println("What do you want to update?");
+                System.out.println("\nWhat do you want to update?");
                 System.out.println("1. Name \n2. Department \n3. Grade \n4. Name & Department \n5. Name & Grade \n6. Department & Grade \n7. All");
                 System.out.println("Enter the appropriate number to update: ");
 
@@ -376,31 +380,31 @@ public class StudentManagementSystem {
                         sc.nextLine();
 
                         // Perform action based on user's choice
-                        switch (choice){
-                            case 1:
+                        switch (choice) {
+                            case 1 -> {
                                 System.out.println("Enter the new name: ");
                                 String newName = getStudentName();
                                 checkStudent.setStudentName(newName);
                                 System.out.println("Student's name updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 2:
+                            }
+                            case 2 -> {
                                 System.out.println("Available departments: CSE, ECE, EEE, CIVIL, MECH, IT, AIML, AIDS.");
                                 System.out.println("Enter the new department: ");
                                 String newDept = getStudentDepartment();
                                 checkStudent.setDept(newDept);
                                 System.out.println("Student's department updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 3:
+                            }
+                            case 3 -> {
                                 System.out.println("Available grades: A+, A, B, C, D, F.");
                                 System.out.println("Enter the new grade: ");
                                 String newGrade = getStudentGrade();
                                 checkStudent.setGrade(newGrade);
                                 System.out.println("Student's grade updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 4:
+                            }
+                            case 4 -> {
                                 System.out.println("Enter the new name: ");
                                 String newName1 = getStudentName();
                                 checkStudent.setStudentName(newName1);
@@ -410,8 +414,8 @@ public class StudentManagementSystem {
                                 checkStudent.setDept(newDept1);
                                 System.out.println("Student's name and department have been updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 5:
+                            }
+                            case 5 -> {
                                 System.out.println("Enter the new name: ");
                                 String newName2 = getStudentName();
                                 checkStudent.setStudentName(newName2);
@@ -421,8 +425,8 @@ public class StudentManagementSystem {
                                 checkStudent.setGrade(newGrade1);
                                 System.out.println("Student's name and grade have been updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 6:
+                            }
+                            case 6 -> {
                                 System.out.println("Available departments: CSE, ECE, EEE, CIVIL, MECH, IT, AIML, AIDS.");
                                 System.out.println("Enter the new department: ");
                                 String newDept2 = getStudentDepartment();
@@ -433,8 +437,8 @@ public class StudentManagementSystem {
                                 checkStudent.setGrade(newGrade2);
                                 System.out.println("Student's department and grade have been updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            case 7:
+                            }
+                            case 7 -> {
                                 System.out.println("Enter the new name: ");
                                 String newName3 = getStudentName();
                                 checkStudent.setStudentName(newName3);
@@ -448,10 +452,11 @@ public class StudentManagementSystem {
                                 checkStudent.setGrade(newGrade3);
                                 System.out.println("Student's name, department, and grade have been updated successfully!");
                                 overwriteFileWithAllStudents();
-                                break;
-                            default:
+                            }
+                            default -> {
                                 System.out.println("Invalid choice! Please enter a valid option: ");
                                 continue;
+                            }
                         }
                         break;
                     }
@@ -472,6 +477,7 @@ public class StudentManagementSystem {
     // This method displays all student records stored in the list
     public void displayStudent(){
         if (!studentsList.isEmpty()){
+            System.out.println("\n--- Displaying All Students ---");
             // Print header row
             System.out.printf("%-15s %-15s %-12s %-5s%n", "Name", "Department", "RollNumber", "Grade");
 
@@ -487,18 +493,21 @@ public class StudentManagementSystem {
 
     // This method prints the list of available options for the user to choose from
     public void userChoice(){
-        System.out.println("\nPlease choose an option:\n"+
-                "1. Add Student\n"+
-                "2. Remove Student\n"+
-                "3. Search Student\n"+
-                "4. Update Student\n"+
-                "5. Display All Students\n"+
-                "6. Exit\n"+
-                "Enter your choice: ");
+        System.out.println("""
+
+                Please choose an option:
+                1. Add Student
+                2. Remove Student
+                3. Search Student
+                4. Update Student
+                5. Display All Students
+                6. Exit
+                Enter your choice:\s""");
     }
 
     public static void main(String[] args){
-        String repeat = null;
+        System.out.println("----- Student Management System -----");
+        String repeat;
 
         // Creating an object to access all student-related methods
         StudentManagementSystem students = new StudentManagementSystem();
@@ -506,12 +515,12 @@ public class StudentManagementSystem {
         // Reading existing student records from the text file (if available)
         students.readStudentsFromFile();
 
-        // Displaying records already present in the file
-        System.out.println("Existing Student Records:");
-        students.displayStudent();
-
         // Short intro to let the user know what the system can do
         System.out.println("\nHey user! This is your Student Management System. Here, you can add and remove students.\nAnd also, you can search, update and display student details.");
+
+        // Displaying records already present in the file
+        System.out.println("\nExisting Student Records:");
+        students.displayStudent();
 
         // This loop keeps the program running until the user decides to exit
         while (true){
@@ -523,96 +532,87 @@ public class StudentManagementSystem {
                 sc.nextLine(); // Consume newline
 
                 // Perform action based on the user's input
-                switch (choice){
-                    case 1:
+                switch (choice) {
+                    case 1 -> {
                         students.addStudent(); // adding a new student
 
                         // Ask the user if they want to add more students
                         System.out.println("\nDo you want to add another student? Type 'yes' or 'no':");
-                        while (true){
+                        while (true) {
                             repeat = sc.next();
                             sc.nextLine();
-                            if (repeat.equalsIgnoreCase("yes")){
+                            if (repeat.equalsIgnoreCase("yes")) {
                                 students.addStudent();
                                 System.out.println("\nDo you want to add another student? Type 'yes' or 'no':");
-                            }
-                            else if (repeat.equalsIgnoreCase("no")) {
+                            } else if (repeat.equalsIgnoreCase("no")) {
                                 break;
-                            }
-                            else {
+                            } else {
                                 System.out.println("Invalid input! Please enter 'yes' or 'no':");
                             }
                         }
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         students.removeStudent(); // deleting a student
 
                         // Ask if user wants to delete more
-                        while (true){
+                        while (true) {
                             repeat = sc.next();
                             sc.nextLine();
-                            if (repeat.equalsIgnoreCase("yes")){
+                            if (repeat.equalsIgnoreCase("yes")) {
                                 students.removeStudent();
-                            }
-                            else if (repeat.equalsIgnoreCase("no")) {
+                            } else if (repeat.equalsIgnoreCase("no")) {
                                 break;
-                            }
-                            else {
+                            } else {
                                 System.out.println("Invalid input! Please enter 'yes' or 'no':");
                             }
                         }
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         students.searchStudent(); // search by name or roll no.
 
                         // Ask if user wants to search again
-                        while (true){
+                        while (true) {
                             repeat = sc.next();
                             sc.nextLine();
-                            if (repeat.equalsIgnoreCase("yes")){
+                            if (repeat.equalsIgnoreCase("yes")) {
                                 students.searchStudent();
-                            }
-                            else if (repeat.equalsIgnoreCase("no")) {
+                            } else if (repeat.equalsIgnoreCase("no")) {
                                 break;
-                            }
-                            else {
+                            } else {
                                 System.out.println("Invalid input! Please enter 'yes' or 'no':");
                             }
                         }
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         students.updateStudent(); // update student details
 
                         // Ask if another update is needed
                         while (true) {
                             repeat = sc.next();
                             sc.nextLine();
-                            if (repeat.equalsIgnoreCase("yes")){
+                            if (repeat.equalsIgnoreCase("yes")) {
                                 students.updateStudent();
-                            }
-                            else if (repeat.equalsIgnoreCase("no")) {
+                            } else if (repeat.equalsIgnoreCase("no")) {
                                 break;
-                            }
-                            else {
+                            } else {
                                 System.out.println("Invalid input! Please enter 'yes' or 'no':");
                             }
                         }
-                        break;
-                    case 5:
-                        students.displayStudent(); // show all student data
-                        break;
-                    case 6:
+                    }
+                    case 5 -> students.displayStudent(); // show all student data
+                    case 6 -> {
                         // User chose to exit
-                        System.out.println("Thank you for using the Student Management System. Goodbye!");
+                        System.out.println("\nThank you for using the Student Management System. Goodbye!");
                         return;
-                    default:
+                    }
+                    default ->
                         // If choice is out of range
-                        System.out.println("Invalid choice! Please enter a valid option: ");
+                            System.out.println("Invalid choice! Please enter a valid option.");
                 }
             }
             else {
                 // When user enters a non-integer input
-                System.out.println("Invalid input! Please enter a valid integer choice: ");
+                System.out.println("Invalid input! Please enter a valid integer choice.");
                 sc.next(); // Clear wrong input
             }
         }
